@@ -2,7 +2,7 @@
 
   'use strict';
 
-  function SimulationDirective()
+  function SimulationDirective($timeout)
   {
     
     return {
@@ -13,7 +13,7 @@
       replace:true,
       link: function(scope, element, attrs, ctrl) 
       {
-          
+       
           scope.runSimulation = function()
           {
             ctrl.startSimulation();
@@ -26,7 +26,12 @@
 
   }
 
-  angular.module('app.directives.simulation',[])
+  angular.module('app.directives.simulation',[
+      'app.controllers.simulation',
+      'app.services.simulation',
+      'modules.profitlosschart',
+      'modules.leadsreport'
+    ])
     .directive('simulation', SimulationDirective);
   
 })();

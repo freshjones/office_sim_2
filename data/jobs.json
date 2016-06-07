@@ -1,0 +1,99 @@
+{
+	"Banner Ad - Resize" : {
+		"weight" : 25,
+		"duedate" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
+		"expedite" : {"value":90,"description":"Probability that this job will need to be expedited"},
+		"description" : "A Design Only Project (e.g. we do the design someone else does the development)",
+		"components" : {
+			"Strategy" : {
+				"rate" : 125,
+				"roles" : ["accountrep","designer"],
+				"experience" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
+				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+			},
+			"Production" : {
+				"rate" : 125,
+				"roles" : ["Production Artist"],
+				"experience" : {"level":{"values":[[0,5],[6,10]],"weights":[0.1,0.9]},"description":"probable experience level required - low experience effects delays"},
+				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+			}
+		},
+		"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+	},
+	"Website Redesign Only - Small" : {
+		"weight" : 70,
+		"expedite" : {"value":10,"description":"Probability that this job will need to be expedited"},
+		"experience" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
+		"description" : "A Design Only Project (e.g. we do the design someone else does the development)",
+		"components" : {
+			"Strategy" : {
+				"rate" : 125,
+				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+			},
+			"Creative" : {
+				"rate" : 125,
+				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+			}
+		},
+		"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+	},
+	"Marketing Campaign 1" : {
+		"weight" : 5,
+		"expedite" : {"value":0,"description":"Probability that this job will need to be expedited"},
+		"description" : "",
+		"components" : {
+			"Print Ad" : {
+				"components" : {
+					"Strategy" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					},
+					"Creative" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					},
+					"Production" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					}
+				}
+			},
+			"Tradeshow Booth" : {
+				"components" : {
+					"Strategy" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					},
+					"Creative" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					},
+					"Production" : {
+						"rate" : 125,
+						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
+						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
+						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+					}
+				}
+			}
+		}
+	}
+}

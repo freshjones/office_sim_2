@@ -1,5 +1,235 @@
 {
-	"categories": [
-		{}
+	"Accounts": [
+		{
+			"label" : "Accounting",
+			"type" : "Professional Service",
+			"costpermonth" : 625,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Blue Cross Blue Shield",
+			"type" : "Insurance",
+			"costpermonth" : 3046,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Bank of America Credit Card - Chloe",
+			"type" : "Credit Card Debt",
+			"costpermonth" : 300,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Bank of America Credit Card - Billy",
+			"type" : "Credit Card Debt",
+			"costpermonth" : 800,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Cable and Internet",
+			"type" : "Utilities",
+			"costpermonth" : 300,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Cell Phone",
+			"type" : "Utilities",
+			"costpermonth" : 200,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Crocker Communications",
+			"type" : "Utilities",
+			"costpermonth" : 150,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Equipment Loan - Dell",
+			"type" : "Business Debt",
+			"costpermonth" : 50,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Dental Insurance",
+			"type" : "Insurance",
+			"costpermonth" : 200,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Direct Capital",
+			"type" : "Business Debt",
+			"costpermonth" : 350,
+			"dayofmonthdue" : 10,
+			"terms" : 30
+		},
+		{
+			"label" : "Direct Capital",
+			"type" : "Business Debt",
+			"costpermonth" : 350,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Direct Capital",
+			"type" : "Business Debt",
+			"costpermonth" : 750,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Electric",
+			"type" : "Utilities",
+			"costpermonth" : 300,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Bulletproof",
+			"type" : "Professional Service",
+			"costpermonth" : 40,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Emma",
+			"type" : "Professional Service",
+			"costpermonth" : 200,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Heating",
+			"type" : "Utilities",
+			"costpermonth" : 50,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Home Depot Credit Card",
+			"type" : "Credit Card Debt",
+			"costpermonth" : 250,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "IRS Back Taxes",
+			"type" : "Business Debt",
+			"costpermonth" : 1000,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Rent",
+			"type" : "Rent",
+			"costpermonth" : 2000,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Cleaning",
+			"type" : "Professional Service",
+			"costpermonth" : 200,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Postage",
+			"type" : "Other",
+			"costpermonth" : 50,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Rackspace Hosting",
+			"type" : "Professional Service",
+			"costpermonth" : 1300,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Snow & Sons",
+			"type" : "Professional Service",
+			"costpermonth" : 75,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Subscriptions",
+			"type" : "Professional Service",
+			"costpermonth" : 350,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Supplies",
+			"type" : "Other",
+			"costpermonth" : 100,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "The Hartford - Liability",
+			"type" : "Insurance",
+			"costpermonth" : 100,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Verizon Fire",
+			"type" : "Insurance",
+			"costpermonth" : 50,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Phone Equipment",
+			"type" : "Business Debt",
+			"costpermonth" : 600,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		},
+		{
+			"label" : "Petty Cash",
+			"type" : "Other",
+			"costpermonth" : 100,
+			"dayofmonthdue" : 10,
+			"balance" : 0,
+			"terms" : 30
+		}
 	]
 }

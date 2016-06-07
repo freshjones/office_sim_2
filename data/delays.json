@@ -1,0 +1,37 @@
+{
+	
+	"Project Delays" : {
+
+		"values" : {
+			"Missing Requirements" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Missing Signoff" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Internal Delay" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]}
+		},
+		"weights" : [
+			0.5,
+			0.1,
+			0.2
+		]
+
+	},
+	"Service Delays" : {
+		
+		"values" : {
+
+			"Resource Out Sick" : {"values":[[0,0],[8,8]],"weights":[0.95,0.05]},
+			"Waiting For Customer Approval" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Waiting For internal Feedback" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Changes Requested From Customer" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Unforeseen Issues" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]},
+			"Operational/Technical Failure" : {"values":[[0,8],[9,16]],"weights":[0.7,0.3]}
+
+		},
+		"weights" : [
+			0.5,
+			0.1,
+			0.2
+		]
+
+	}
+
+}

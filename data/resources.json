@@ -1,1 +1,25 @@
-{}
+{
+	"people":[
+		{
+			"name" : "Chloe",
+			"salaryperyear" : "50000",
+			"roles" : [
+				"sales"
+			]
+		},
+		{
+			"name" : "William",
+			"salaryperyear" : "50000",
+			"roles" : [
+
+			]
+		},
+		{
+			"name" : "Kristen",
+			"salaryperyear" : "50000",
+			"roles" : [
+				
+			]
+		}
+	]
+}

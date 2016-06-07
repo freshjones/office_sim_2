@@ -1,0 +1,14 @@
+{
+	"Accounts": [
+		{
+			"label" : "Cash",
+			"type" : "Checking Account",
+			"balance" : 0
+		},
+		{
+			"label" : "Cash",
+			"type" : "Checking Account",
+			"balance" : 0
+		}
+	]
+}

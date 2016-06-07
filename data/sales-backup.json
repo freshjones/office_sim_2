@@ -1,0 +1,55 @@
+{
+	"leads" : {
+		"description" : "Are qualified customers and potential customers that may have a current or future need in which our services could potentially fullfill",
+		"active" : {
+			"QtyPerMonth" : {"values":[[0,3],[4,6],[7,10],[11,15]],"weights":[0.3,0.57,0.1,0.03]},
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]}
+		},
+		"passive" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : 0
+		}
+	},
+	"opportunities" : {
+		"description" : "Are chance to discuss a particular need with a qualified customer or potential that also offers the possibility to estimate on that particular need.",
+		"active" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : 0
+		},
+		"passive" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : 0
+		}
+	},
+	"estimates" : {
+		"description" : "Are a time and cost specific solution to a customers need based on specific requirements",
+		"active" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : 0
+		},
+		"passive" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 95,
+			"AvgTimeToConvert" : 0
+		}
+	},
+	"jobs" : {
+		"description" : "Are time and cost estimates that have been approved by the customer and are now ready to be fullfilled based on their approved requirements.",
+		"active" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 100,
+			"AvgTimeToConvert" : 0
+		},
+		"passive" : {
+			"QtyPerMonth" : 0,
+			"AvgPercentConverted" : 95,
+			"AvgTimeToConvert" : 0
+		}
+	}
+	
+}

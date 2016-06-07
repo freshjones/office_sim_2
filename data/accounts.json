@@ -1,0 +1,22 @@
+{
+	"Cash" : {
+		"category" : "Asset",
+		"balance" : 0
+	},
+	"Accounts Receivable" : {
+		"category" : "Asset",
+		"balance" : 0
+	},
+	"Accounts Payable" : {
+		"category" : "Liability",
+		"balance" : 0
+	},
+	"Revenues" : {
+		"category" : "Revenue",
+		"balance" : 0
+	},
+	"Expenses" : {
+		"category" : "Expense",
+		"balance" : 0
+	}
+}

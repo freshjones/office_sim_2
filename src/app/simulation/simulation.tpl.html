@@ -1,3 +1,10 @@
 <div>
+	<div>
+	<ul>
+	<li ng-repeat="(key,account) in accounts">{{key}}: ${{account.balance}}</li>
+	</ul>
+	</div>
+	<sales-reporting></sales-reporting>
 	<button ng-click="runSimulation()">Start Simulation</button>
+	<profit-loss-chart></profit-loss-chart>
 </div>

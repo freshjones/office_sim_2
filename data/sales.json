@@ -1,0 +1,310 @@
+{
+	"leads" : {
+		"description" : "Are qualified customers and potential customers that may have a current or future need in which our services could potentially fullfill",
+		"types" : {
+			"active" :{
+				"qtypermonth" : {"values":[[0,3],[4,6],[7,10],[11,15]],"weights":[0.3,0.57,0.1,0.03]},
+				"probability" : {"value":75, "description":"probability of becoming an lead"},
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do active generated leads sometimes fail?",
+					"values" : [
+						"Not Qualified",
+						"Didn't follow up properly"
+					],
+					"weights" : [
+						0.7,
+						0.3
+					]
+				}
+			},
+			"passive" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an lead"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do passive generated leads sometimes fail?",
+					"values" : [
+						"Not Qualified",
+						"Didn't follow up properly"
+					],
+					"weights" : [
+						0.7,
+						0.3
+					]
+				}
+			}
+		}
+	},
+	"opportunities" : {
+		"description" : "Are chance to discuss a particular need with a qualified customer or potential that also offers the possibility to estimate on that particular need.",
+		"types" : {
+			"active" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an opportunity"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do active generated opportunities sometimes fail?",
+					"values" : [
+						"Missed Appointment",
+						"Didn't follow up properly",
+						"Not a good fit",
+						"Unrealistic expectations",
+						"We couldn't meet the schedule"
+					],
+					"weights" : [
+						0.3,
+						0.3,
+						0.3,
+						0.2,
+						0.2
+					]
+				}
+			},
+			"passive" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an opportunity"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do passive generated opportunities sometimes fail?",
+					"values" : [
+						"Missed Appointment",
+						"Didn't follow up properly",
+						"Not a good fit",
+						"Unrealistic expectations",
+						"We couldn't meet the schedule"
+					],
+					"weights" : [
+						0.3,
+						0.3,
+						0.3,
+						0.2,
+						0.2
+					]
+				}
+			}
+		}
+	},
+	"estimates" : {
+		"description" : "Are a time and cost specific solution to a customers need based on specific requirements",
+		"types" : {
+			"active" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an estimate"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : {"values":[[0,1],[2,4],[5,10]],"weights":[0.4,0.5,0.1]},
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						{"desc":"Customer delays getting requirements to us","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Customer delays signing contract","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Customer delays initial payment","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Inhouse estimator not available","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} }
+					],
+					"weights" : [
+						0.4,
+						0.1,
+						0.1,
+						0.4
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do active generated estimates sometimes fail?",
+					"values" : [
+						"Customer had unrealistic expectations",
+						"Our estimate was too high",
+						"We didn't follow through",
+						"We did not estimate in time",
+						"We did not have the proper skills to do the job",
+						"We were out bid by a competitor",
+						"We couldn't meet the customers schedule"
+					],
+					"weights" : [
+						0.1,
+						0.2,
+						0.2,
+						0.1,
+						0.2,
+						0.1,
+						0.1
+					]
+				}
+			},
+			"passive" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an estimate"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						{"desc":"Customer delays getting requirements to us","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Customer delays signing contract","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Customer delays initial payment","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} },
+						{"desc":"Inhouse estimator not available","cost":{"values":[[24,168],[168,720],[720,1440]],"weights":[0.3,0.4,0.3]} }
+					],
+					"weights" : [
+						0.4,
+						0.1,
+						0.1,
+						0.4
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do passive generated estimates sometimes fail?",
+					"values" : [
+						"Customer had unrealistic expectations",
+						"Our estimate was too high",
+						"We didn't follow through",
+						"We did not estimate in time",
+						"We did not have the proper skills to do the job",
+						"We were out bid by a competitor",
+						"We couldn't meet the customers schedule"
+					],
+					"weights" : [
+						0.1,
+						0.2,
+						0.2,
+						0.1,
+						0.2,
+						0.1,
+						0.1
+					]
+				}
+			}
+		}
+	},
+	"jobs" : {
+		"description" : "Are time and cost estimates that have been approved by the customer and are now ready to be fullfilled based on their approved requirements.",
+		"types" : {
+			"active" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":95, "description":"probability of becoming an job"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do active generated jobs sometimes fail?",
+					"values" : [
+						"Customer couldn't/wouldn't make requirements available",
+						"Customer couldn't/wouldn't make an initial deposit",
+						"We could not meet the customers schedule"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				}
+			},
+			"passive" :{
+				"qtypermonth" : 0,
+				"probability" : {"value":85, "description":"probability of becoming an job"}, 
+				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
+				"delays" : 0,
+				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayreasons" : {
+					"description" : "Reasons for a delay in becoming a job",
+					"values" : [
+						"Customer delays getting requirements to us",
+						"Customer delays signing contract",
+						"Customer delays initial payment"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				},
+				"failurereasons" : {
+					"description" : "Why do active generated jobs sometimes fail?",
+					"values" : [
+						"Customer couldn't/wouldn't make requirements available",
+						"Customer couldn't/wouldn't make an initial deposit",
+						"We could not meet the customers schedule"
+					],
+					"weights" : [
+						0.7,
+						0.1,
+						0.2
+					]
+				}
+			}
+		}
+	}
+}

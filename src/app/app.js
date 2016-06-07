@@ -2,13 +2,13 @@
   
   'use strict';
 
+  var moduleDir = '/src/app/simulation/modules/ProfitLossChart';
+
   var app = angular.module("OfficeSimApp", [
   	'ui.router',
   	'templates',
-  	'common.controllers.main',
-  	'app.controllers.simulation',
-  	'app.directives.simulation',
-  	'app.services.simulation'
+  	'common.controllers.bootstrap',
+  	'app.directives.simulation'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -18,10 +18,7 @@
     .state('root', {
       url: "/",
       template: "<simulation></simulation>",
-      controller: function($scope,data)
-      {
-      	console.log(data);
-      },
+      controller: 'BootstrapCtrl',
       resolve: {
 
       	data:  function($q,$http) {
@@ -29,6 +26,9 @@
             promises.defaults = $http({method: 'GET', url: '/data/defaults.json'});
             promises.expenses = $http({method: 'GET', url: '/data/expenses.json'});
             promises.resources = $http({method: 'GET', url: '/data/resources.json'});
+            promises.accounts = $http({method: 'GET', url: '/data/accounts.json'});
+            promises.sales = $http({method: 'GET', url: '/data/sales.json'});
+            promises.jobs = $http({method: 'GET', url: '/data/jobs.json'});
 
             return $q.all(promises).then(function(response){
 
