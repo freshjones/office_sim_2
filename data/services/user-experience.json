@@ -1,0 +1,59 @@
+{
+	"Outline" : {
+		"id" : "UX-001-000",
+		"description" : "",
+		"category" : "User Experience Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[
+			"PLAN-003-000"
+		],
+		"children":{}
+	},
+	"Mood Board" : {
+		"id" : "UX-002-000",
+		"description" : "",
+		"category" : "User Experience Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},     
+		"requirements":[
+			"PLAN-003-000"
+		],
+		"children":{}
+	},
+	"Wireframe" : {
+		"id" : "UX-003-000",
+		"description" : "",
+		"category" : "User Experience Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[
+			"PLAN-003-000",
+			"UX-001-000"     
+		],
+		"children":{}
+	},
+	"User Stories" : {
+		"id" : "UX-004-000",
+		"description" : "",
+		"category" : "User Experience Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[
+			"PLAN-003-000"
+		],
+		"children":{}
+	}
+}

@@ -75,7 +75,7 @@
       var simulationStats = SimulationService.runSimulation();
       
       
-      console.log(simulationStats);
+      //console.log(simulationStats);
     };
 
     return ctrl;	
@@ -102,7 +102,11 @@
       replace:true,
       link: function(scope, element, attrs, ctrl) 
       {
-       
+          
+          $timeout(function(){
+            ctrl.startSimulation();
+          });
+          
           scope.runSimulation = function()
           {
             ctrl.startSimulation();
@@ -140,7 +144,9 @@
         TimerService,
         SalesService,
         JobService,
-        ProcessService
+        ProcessService,
+        ScheduleService,
+        ProductionService
     )
   {
 
@@ -182,11 +188,42 @@
         //reinitialize
         AccountsService.zeroAccountBalances();
 
+        //initialize processes
+        ProcessService.resetProcesses();
+
         //initialize leads
-        SalesService.resetStates();
+        SalesService.resetSales();
+
+        //initialize jobs
+        JobService.resetJobs();
 
 	};
 
+    service.runSimulation = function()
+    {   
+       
+
+        //increment the iteration
+        for(var i=0; i < iterations; i++)
+        { 
+
+            //reset the timer for each iteration
+            TimerService.resetIterationTimers();
+
+            //increment the iteration
+            TimerService.incrementByOne('iteration');
+
+            //run each iteration
+            service.runIteration();
+
+            //update the data chart
+            //service.updateProfitLossChart();
+
+        }
+
+        return service.getSimulationStatistics();
+ 
+    };
 
     service.runIteration = function()
     {
@@ -195,6 +232,14 @@
 
         SalesService.resetCurrentStates();
 
+        /* TESTING */
+
+        //create one single job
+        //JobService.createJob({"state":"job"});
+
+        //run it through the production cycle
+        //ScheduleService.scheduleJobs();
+
         for(var i=1; i <= 12; i++)
         {
             var month       = i;
@@ -202,7 +247,11 @@
 
             TimerService.incrementByMonth(hour);
             
+            //run the sales department cycle feeders
             SalesService.runSalesCycle();
+
+            //run the production department cycle feeders
+            ProductionService.runProductionCycle();
 
             //run the process cycle after all feeders
             ProcessService.runProcessorCycle();
@@ -232,12 +281,13 @@
             //SalesService.runSalesCycle();
 
             //ProcessService.runCycle();
-        
+
         }
-            
+      
         SalesService.updateSalesFailureStatistics(iteration);
 
     };
+
     /*
 	service.runIteration = function()
 	{
@@ -285,34 +335,7 @@
 
 	};
     */
-	service.runSimulation = function()
-	{	
-       
-
-        //increment the iteration
-        for(var i=0; i < iterations; i++)
-        { 
-
-        	//reset the timer for each iteration
-        	TimerService.resetIterationTimers();
-
-        	//increment the iteration
-        	TimerService.incrementByOne('iteration');
-
-        	//run each iteration
-        	service.runIteration();
-
-            //update the data chart
-            //service.updateProfitLossChart();
-
-        }
-
-        //console.log(SalesService.getStates());
-        //console.log(JobService.getJobsByParam({"param":"state","value":"estimate"}));
-   
-        return service.getSimulationStatistics();
- 
-	};
+	
 
     service.updateProfitLossChart = function()
     {
@@ -423,7 +446,9 @@
       'common.services.timer',
       'common.services.sales',
       'common.services.jobs',
-      'common.services.process'
+      'common.services.process',
+      'common.services.production',
+      'common.services.scheduling'
     ])
     .controller('BootstrapCtrl', BootstrapCtrl);
   
@@ -467,6 +492,22 @@
     {	
     	var returnData= {}; 
     	var _this = this;
+
+        var defaults = VariablesService.getVariable('defaults','services');
+
+        if(angular.isArray(components))
+        {
+            var defaultComponents = {};
+
+            angular.forEach(components,function(key) 
+            {
+                defaultComponents[key] = defaults[key];
+            });
+
+            components = defaultComponents;
+        
+        }
+
     	angular.forEach(components,function(obj,key) 
     	{	
     		
@@ -477,12 +518,20 @@
 
     		} else {
 
-				obj.hours = HelperService.getRandomMinMaxValue(obj.hours.values,obj.hours.weights);
-				obj.iterations = HelperService.getRandomMinMaxValue(obj.iterations.values,obj.iterations.weights);
-				obj.susceptibility = HelperService.getRandomMinMaxValue(obj.susceptibility.values,obj.susceptibility.weights);
-				obj.estimate = obj.hours * obj.rate;
+                var component = angular.copy(defaults[key]);
+
+                angular.extend(component,obj);
+
+                component.experience = component.experience.value;
+                component.rate = HelperService.getValueByRangeOption(component.experience, component.rates.value);
+				component.hours = HelperService.getRandomMinMaxValue(component.hours.value.options,component.hours.value.weights);
+				component.iterations = HelperService.getRandomMinMaxValue(component.iterations.value.options,component.iterations.value.weights);
+				//obj.susceptibility = HelperService.getRandomMinMaxValue(obj.susceptibility.values,obj.susceptibility.weights);
+				component.estimate = component.hours * component.rate;
 				
-    			returnData[key] = obj; 
+                delete(component.rates);
+
+    			returnData[key] = component; 
 
     		}
 
@@ -506,7 +555,7 @@
     	jobData.weights = [];
     	angular.forEach(jobTypes,function(obj,key){
     		jobData.values.push(key);
-    		jobData.weights.push(obj.weight/100);
+    		jobData.weights.push(obj.weight.value/100);
     	});
 
     	this.jobData = jobData;
@@ -541,6 +590,8 @@
     {
         if(this.job.state === undefined) this.job.state = 'estimate';
         if(this.params.state !== undefined) this.job.state = this.params.state;
+
+        this.setTime(this.job.state);
     };
 
     job.prototype.setEstimate = function()
@@ -552,9 +603,55 @@
     	this.job.estimate = estimateData.cost;
     };
 
+    job.prototype.setExpedite = function()
+    {   
+        var expedite = HelperService.getRandomProbability(this.job.expedite.value);
+        this.job.expedite = expedite;
+    };
+
     job.prototype.setJobID = function()
     {   
         this.job.id = HelperService.uuid();
+    };
+
+    job.prototype.setDueDate = function()
+    {
+        
+        var duedate = 'Not Specified';   
+        
+        if(angular.isObject(this.job.duedate))
+        {
+            var ddObj = this.job.duedate.value;
+            var days = HelperService.getRandomMinMaxValue(ddObj.options,ddObj.weights); 
+
+            if(days > 0)
+            {
+                duedate = days * 24;
+            }
+
+        }
+
+        this.job.duedate = duedate;
+    
+    };
+    
+    job.prototype.setWeight = function()
+    {   
+        this.job.weight = this.job.weight.value;
+    };
+
+    job.prototype.initTimes = function()
+    {   
+        this.job.times = {};
+    };
+
+    job.prototype.setTime = function(param)
+    {   
+        var thisMonth = TimerService.getIterationValue('month'); 
+
+        var today = new Date();
+        var now = today.getTime();
+        this.job.times[param] = thisMonth;
     };
 
 	job.prototype.setJob = function()
@@ -563,17 +660,31 @@
     	var jobKey = HelperService.getRandomValue(this.jobData.values,this.jobData.weights);
     	this.job = angular.copy(jobTypes[jobKey]); 
 
+        this.job.title = jobKey;
+        
         //set the state of the job
         this.setJobID();
 
-        //set the state of the job
-        this.setJobState();
+        //set the job estimate
+        this.initTimes();
 
     	//set job components
     	this.setComponents();
 
     	//set the job estimate
     	this.setEstimate();
+
+        //set the job estimate
+        this.setExpedite();
+
+        //set the job estimate
+        this.setDueDate();
+
+        //set the job estimate
+        this.setWeight();
+
+        //set the state of the job
+        this.setJobState();
 
     };
 
@@ -587,7 +698,7 @@
     service.initJobTypes = function(data)
     {
     	if(jobTypes === undefined) jobTypes = {};
-    	angular.extend(jobTypes,data);
+    	angular.extend(jobTypes,data.jobtypes);
     };
 
     service.getJobInstance = function(params)
@@ -875,6 +986,16 @@
         return value;
     };
 
+    service.getValueByRangeOption = function(val, obj) 
+    {
+        for (var i = 0; i < obj.options.length; i++) {
+            if(val >= obj.options[i][0] && val <= obj.options[i][1])
+            {
+                return obj.values[i];
+            }
+        }
+    };
+
     service.getRandomValue = function(values, weight) 
     {
         var total_weight = weight.reduce(function (prev, cur, i, arr) {
@@ -972,12 +1093,18 @@
 
   'use strict';
 
-  function JobService($filter,JobFactory)
+  function JobService($filter,JobFactory,TimerService)
   {
 
     var jobs = {};
 
     var service = {};
+
+    
+    service.resetJobs = function()
+    {
+      jobs = {};
+    };
 
     service.createEstimate = function()
     {
@@ -995,12 +1122,31 @@
     {
       if(jobs[id] === undefined) return false;
       angular.extend(jobs[id],{"state":state});
+      service.LogStateChange(id,state);
       return true;
+    };
+
+    service.LogStateChange = function(id,state)
+    {
+      if(jobs[id] === undefined) return false;
+
+      var thisMonth           = TimerService.getIterationValue('month'); 
+
+      var today = new Date();
+      var now = today.getTime();
+      var obj = {};
+      obj[state] = thisMonth;
+      angular.extend(jobs[id].times,obj);
     };
 
     service.getJob = function(id)
     {
       return jobs[id] !== undefined ? jobs[id] : false;
+    };
+
+    service.getAllJobs = function(id)
+    {
+      return Object.keys(jobs).length > 0 ? jobs : false;
     };
 
     service.getJobsByParam = function(params)
@@ -1046,9 +1192,14 @@
   function ProcessService($filter,TimerService)
   {
 
-    var processes = [];
+    var processes;
 
     var service = {};
+
+    service.resetProcesses = function()
+    {
+      processes = [];
+    };
 
     service.addProcess = function(obj)
     {
@@ -1059,7 +1210,7 @@
       var time = obj.time < 720 ? currentMonth : currentMonth + Math.floor(obj.time / 720);
 
       if(time > 12) time = 1;
-      
+
       obj.time = time;
 
       processes.push(obj);
@@ -1151,6 +1302,42 @@
 
   'use strict';
 
+  function ProductionService(JobService,TimerService)
+  {
+
+    var service = {};
+
+    /*
+      
+    */
+    service.runProductionCycle = function()
+    { 
+      
+      var timer   = TimerService.getIteration();
+      var jobs = JobService.getAllJobs();
+
+      if(jobs)
+      {  
+      
+     
+
+      }
+      
+    };
+
+    return service;
+
+  }
+
+  angular.module('common.services.production', [])
+    .factory('ProductionService', ProductionService);
+  
+})();
+
+(function() {
+
+  'use strict';
+
   function SalesService(VariablesService,HelperService,TimerService,StatisticsService,ProcessService,JobService)
   {
 
@@ -1162,6 +1349,11 @@
     {
       if(defaults === undefined) defaults = {};
       angular.extend(defaults,data.sales);
+      service.resetSales();
+    };
+
+    service.resetSales = function()
+    {
       service.resetStates();
       service.resetFailures();
     };
@@ -1169,16 +1361,22 @@
     service.resetStates = function()
     {
       if(states === undefined) states = {};
-      var data = {};
-
-      if(Object.keys(states).length)
+      
+      angular.forEach(defaults,function(obj,key) 
       {
+        states[key] = {"current":{},"cumulative":{},"total":0};
+      });
+
+      /*
+      if(Object.keys(states).length)
+      { 
         angular.forEach(states,function(obj,key) 
         {
-          delete states[key];
+          states[key] = {"current":{},"cumulative":{}};
         });
       }
-      
+      */
+
     };
 
     service.resetFailures = function()
@@ -1190,7 +1388,7 @@
       {
         angular.forEach(failures,function(obj,key) 
         {
-          delete failures[key];
+          failures[key] = {};
         });
       }
 
@@ -1220,9 +1418,9 @@
       var thisIteration       = TimerService.getIterationValue('iteration');
       var thisMonth           = TimerService.getIterationValue('month'); 
 
-      if(states[state] === undefined) states[state] = {"current":{},"cumulative":{}};
+      if(states[state] === undefined) states[state] = {"current":{},"cumulative":{},"total":0};
 
-      if(states[state].total === undefined) states[state].total = 0;
+      //if(states[state].total === undefined) states[state].total = 0;
 
       if(states[state].current[thisMonth] === undefined) states[state].current[thisMonth] = 0;
       if(states[state].cumulative[thisMonth] === undefined) states[state].cumulative[thisMonth] = 0;
@@ -1301,15 +1499,15 @@
         angular.forEach(stateData.types,function(typeData,typeKey){
 
           var potentialObj = HelperService.getRandomMinMaxValue(typeData.qtypermonth.values, typeData.qtypermonth.weights);
-        
+
           if(potentialObj)
           {
             /* with the probability setting we will rule out some potential leads to get our actual leads per month */
-            var probability = typeData.probability.value;
+            //var probability = typeData.probability.value;
 
             for(var i = 0; i<potentialObj; i++)
             {
-              service.runProbabilityFilter({"state":stateKey,"type":typeKey,"data":{}});
+              service.runProbabilityFilter({"state":stateKey,"type":typeKey,"data":{},"cycles":0});
             }
 
           }
@@ -1339,6 +1537,11 @@
     service.runProbabilityFilter = function(params)
     { 
 
+      if(params.state === undefined ) return;
+
+      //bump the cycle increment;
+      params.cycles += 1;
+
       var settings = defaults[params.state].types[params.type];
 
       if(service.probabiltyCheck(params))
@@ -1354,9 +1557,9 @@
         //moving on
         service.createSalesProcess(params);
 
+
       } else {
 
-        //console.log(settings.failurereasons.values);
         var failure =  HelperService.getRandomValue(settings.failurereasons.values, settings.failurereasons.weights);
 
         service.updateFailures({"state":params.state,"type":failure});
@@ -1400,9 +1603,7 @@
           if(service.delayProbabiltyCheck(params))
           {
               var thisDelay = HelperService.getRandomValue(settings.delayreasons.values, settings.delayreasons.weights);
-
-              delayTime = HelperService.getRandomMinMaxValue(thisDelay.cost.values, thisDelay.cost.weights);
-
+              delayTime += HelperService.getRandomMinMaxValue(thisDelay.cost.values, thisDelay.cost.weights);
           }
 
         }
@@ -1415,6 +1616,7 @@
 
     service.getCallbackParams = function(params)
     {
+
       var stateKeys = Object.keys(defaults);
       var returnObj;
       var curIndex = stateKeys.indexOf(params.state);
@@ -1425,7 +1627,8 @@
             "params":{
               "state":stateKeys[nextIndex],
               "type":params.type,
-              "data":params.data
+              "data":params.data,
+              "cycles":params.cycles
             }
           };
 
@@ -1434,7 +1637,7 @@
         returnObj = {
             "callback":service.createJob,
             "params": params.data
-          };
+        };
       }
 
       return returnObj;
@@ -1456,12 +1659,12 @@
       };
 
       ProcessService.addProcess(processObj);
-      
-      service.updateStateValue(params.state);
 
+      service.updateStateValue(params.state);
+     
     };
 
-    /* no need to check probability at this point its already been done */
+    
     service.createJob = function(params)
     {
         JobService.setJobState(params.jobID,'job');
@@ -1473,6 +1676,51 @@
 
   angular.module('common.services.sales', [])
     .factory('SalesService', SalesService);
+  
+})();
+
+(function() {
+
+  'use strict';
+
+  function ScheduleService(JobService,TimerService)
+  {
+
+    var schedule = {};
+    var service = {};
+
+    /* */
+    service.scheduleJobs = function()
+    { 
+      
+      var timer   = TimerService.getIteration();
+      var jobs = JobService.getJobsByParam({'state':'job'});
+
+      if(jobs)
+      {  
+        
+        angular.forEach(jobs,function(job,key)
+        {
+          
+          console.log(job.components);
+          /* 
+            1) Break job down into its various components
+            2) 
+          */  
+
+
+        });
+
+      }
+      
+    };
+
+    return service;
+
+  }
+
+  angular.module('common.services.scheduling', [])
+    .factory('ScheduleService', ScheduleService);
   
 })();
 

@@ -21,6 +21,22 @@
     {	
     	var returnData= {}; 
     	var _this = this;
+
+        var defaults = VariablesService.getVariable('defaults','services');
+
+        if(angular.isArray(components))
+        {
+            var defaultComponents = {};
+
+            angular.forEach(components,function(key) 
+            {
+                defaultComponents[key] = defaults[key];
+            });
+
+            components = defaultComponents;
+        
+        }
+
     	angular.forEach(components,function(obj,key) 
     	{	
     		
@@ -31,12 +47,20 @@
 
     		} else {
 
-				obj.hours = HelperService.getRandomMinMaxValue(obj.hours.values,obj.hours.weights);
-				obj.iterations = HelperService.getRandomMinMaxValue(obj.iterations.values,obj.iterations.weights);
-				obj.susceptibility = HelperService.getRandomMinMaxValue(obj.susceptibility.values,obj.susceptibility.weights);
-				obj.estimate = obj.hours * obj.rate;
+                var component = angular.copy(defaults[key]);
+
+                angular.extend(component,obj);
+
+                component.experience = component.experience.value;
+                component.rate = HelperService.getValueByRangeOption(component.experience, component.rates.value);
+				component.hours = HelperService.getRandomMinMaxValue(component.hours.value.options,component.hours.value.weights);
+				component.iterations = HelperService.getRandomMinMaxValue(component.iterations.value.options,component.iterations.value.weights);
+				//obj.susceptibility = HelperService.getRandomMinMaxValue(obj.susceptibility.values,obj.susceptibility.weights);
+				component.estimate = component.hours * component.rate;
 				
-    			returnData[key] = obj; 
+                delete(component.rates);
+
+    			returnData[key] = component; 
 
     		}
 
@@ -60,7 +84,7 @@
     	jobData.weights = [];
     	angular.forEach(jobTypes,function(obj,key){
     		jobData.values.push(key);
-    		jobData.weights.push(obj.weight/100);
+    		jobData.weights.push(obj.weight.value/100);
     	});
 
     	this.jobData = jobData;
@@ -95,6 +119,8 @@
     {
         if(this.job.state === undefined) this.job.state = 'estimate';
         if(this.params.state !== undefined) this.job.state = this.params.state;
+
+        this.setTime(this.job.state);
     };
 
     job.prototype.setEstimate = function()
@@ -106,9 +132,55 @@
     	this.job.estimate = estimateData.cost;
     };
 
+    job.prototype.setExpedite = function()
+    {   
+        var expedite = HelperService.getRandomProbability(this.job.expedite.value);
+        this.job.expedite = expedite;
+    };
+
     job.prototype.setJobID = function()
     {   
         this.job.id = HelperService.uuid();
+    };
+
+    job.prototype.setDueDate = function()
+    {
+        
+        var duedate = 'Not Specified';   
+        
+        if(angular.isObject(this.job.duedate))
+        {
+            var ddObj = this.job.duedate.value;
+            var days = HelperService.getRandomMinMaxValue(ddObj.options,ddObj.weights); 
+
+            if(days > 0)
+            {
+                duedate = days * 24;
+            }
+
+        }
+
+        this.job.duedate = duedate;
+    
+    };
+    
+    job.prototype.setWeight = function()
+    {   
+        this.job.weight = this.job.weight.value;
+    };
+
+    job.prototype.initTimes = function()
+    {   
+        this.job.times = {};
+    };
+
+    job.prototype.setTime = function(param)
+    {   
+        var thisMonth = TimerService.getIterationValue('month'); 
+
+        var today = new Date();
+        var now = today.getTime();
+        this.job.times[param] = thisMonth;
     };
 
 	job.prototype.setJob = function()
@@ -117,17 +189,31 @@
     	var jobKey = HelperService.getRandomValue(this.jobData.values,this.jobData.weights);
     	this.job = angular.copy(jobTypes[jobKey]); 
 
+        this.job.title = jobKey;
+        
         //set the state of the job
         this.setJobID();
 
-        //set the state of the job
-        this.setJobState();
+        //set the job estimate
+        this.initTimes();
 
     	//set job components
     	this.setComponents();
 
     	//set the job estimate
     	this.setEstimate();
+
+        //set the job estimate
+        this.setExpedite();
+
+        //set the job estimate
+        this.setDueDate();
+
+        //set the job estimate
+        this.setWeight();
+
+        //set the state of the job
+        this.setJobState();
 
     };
 
@@ -141,7 +227,7 @@
     service.initJobTypes = function(data)
     {
     	if(jobTypes === undefined) jobTypes = {};
-    	angular.extend(jobTypes,data);
+    	angular.extend(jobTypes,data.jobtypes);
     };
 
     service.getJobInstance = function(params)

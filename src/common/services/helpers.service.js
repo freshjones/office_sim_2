@@ -31,6 +31,16 @@
         return value;
     };
 
+    service.getValueByRangeOption = function(val, obj) 
+    {
+        for (var i = 0; i < obj.options.length; i++) {
+            if(val >= obj.options[i][0] && val <= obj.options[i][1])
+            {
+                return obj.values[i];
+            }
+        }
+    };
+
     service.getRandomValue = function(values, weight) 
     {
         var total_weight = weight.reduce(function (prev, cur, i, arr) {

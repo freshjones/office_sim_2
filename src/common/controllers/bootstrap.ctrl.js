@@ -39,7 +39,9 @@
       'common.services.timer',
       'common.services.sales',
       'common.services.jobs',
-      'common.services.process'
+      'common.services.process',
+      'common.services.production',
+      'common.services.scheduling'
     ])
     .controller('BootstrapCtrl', BootstrapCtrl);
   

@@ -1,0 +1,50 @@
+{
+	"Visual Design Concepts" : {
+		"id" : "CRE-001-000",
+		"description" : "",
+		"category" : "Creative Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[],
+		"children":{}
+	},
+	"Functional Design Concepts" : {
+		"id" : "CRE-002-000",
+		"description" : "",
+		"category" : "Creative Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Photography/Illustration" : {
+		"id" : "CRE-003-000",
+		"description" : "",
+		"category" : "Creative Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"CopyWriting" : {
+		"id" : "CRE-004-000",
+		"description" : "",
+		"category" : "Creative Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	}
+}

@@ -1,0 +1,52 @@
+{
+	"Local Development Setup" : {
+		"id" : "ENV-001-000",
+		"description" : "",
+		"category" : "Environment Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[],
+		"children":{}
+	},
+	"Cloud Hosting Setup" : {
+		"id" : "ENV-002-000",
+		"description" : "",
+		"category" : "Environment Services",
+		"process" : {
+			"understand" :{},    
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{
+			"Cloud Production Setup" : {
+				"id" : "ENV-002-001",
+				"description" : "",
+				"category" : "Environment Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			},
+			"Cloud Staging Setup" : {
+				"id" : "ENV-002-002",
+				"description" : "",
+				"category" : "Environment Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			}
+		}
+	}
+	
+}

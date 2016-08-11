@@ -2,12 +2,18 @@
 
   'use strict';
 
-  function JobService($filter,JobFactory)
+  function JobService($filter,JobFactory,TimerService)
   {
 
     var jobs = {};
 
     var service = {};
+
+    
+    service.resetJobs = function()
+    {
+      jobs = {};
+    };
 
     service.createEstimate = function()
     {
@@ -25,12 +31,31 @@
     {
       if(jobs[id] === undefined) return false;
       angular.extend(jobs[id],{"state":state});
+      service.LogStateChange(id,state);
       return true;
+    };
+
+    service.LogStateChange = function(id,state)
+    {
+      if(jobs[id] === undefined) return false;
+
+      var thisMonth           = TimerService.getIterationValue('month'); 
+
+      var today = new Date();
+      var now = today.getTime();
+      var obj = {};
+      obj[state] = thisMonth;
+      angular.extend(jobs[id].times,obj);
     };
 
     service.getJob = function(id)
     {
       return jobs[id] !== undefined ? jobs[id] : false;
+    };
+
+    service.getAllJobs = function(id)
+    {
+      return Object.keys(jobs).length > 0 ? jobs : false;
     };
 
     service.getJobsByParam = function(params)

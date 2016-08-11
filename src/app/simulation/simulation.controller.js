@@ -23,7 +23,7 @@
       var simulationStats = SimulationService.runSimulation();
       
       
-      console.log(simulationStats);
+      //console.log(simulationStats);
     };
 
     return ctrl;	

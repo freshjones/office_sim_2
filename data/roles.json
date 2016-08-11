@@ -1,0 +1,19 @@
+{
+	"description" : "The various roles within the shop required to produce our products and services",
+	"values": {
+		"Customer Representative" : {
+			"description" : "Account rep",
+			"department" : "Sales"
+		},
+		"Visual Designer" : {
+			"department" : "Design"
+		},
+		"User Experience Designer" : {
+			"department" : "Design"
+		},
+		"Front-end Developer" : {
+			"department" : "Development"
+		}
+
+	}
+}

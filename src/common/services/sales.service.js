@@ -13,6 +13,11 @@
     {
       if(defaults === undefined) defaults = {};
       angular.extend(defaults,data.sales);
+      service.resetSales();
+    };
+
+    service.resetSales = function()
+    {
       service.resetStates();
       service.resetFailures();
     };
@@ -20,16 +25,22 @@
     service.resetStates = function()
     {
       if(states === undefined) states = {};
-      var data = {};
-
-      if(Object.keys(states).length)
+      
+      angular.forEach(defaults,function(obj,key) 
       {
+        states[key] = {"current":{},"cumulative":{},"total":0};
+      });
+
+      /*
+      if(Object.keys(states).length)
+      { 
         angular.forEach(states,function(obj,key) 
         {
-          delete states[key];
+          states[key] = {"current":{},"cumulative":{}};
         });
       }
-      
+      */
+
     };
 
     service.resetFailures = function()
@@ -41,7 +52,7 @@
       {
         angular.forEach(failures,function(obj,key) 
         {
-          delete failures[key];
+          failures[key] = {};
         });
       }
 
@@ -71,9 +82,9 @@
       var thisIteration       = TimerService.getIterationValue('iteration');
       var thisMonth           = TimerService.getIterationValue('month'); 
 
-      if(states[state] === undefined) states[state] = {"current":{},"cumulative":{}};
+      if(states[state] === undefined) states[state] = {"current":{},"cumulative":{},"total":0};
 
-      if(states[state].total === undefined) states[state].total = 0;
+      //if(states[state].total === undefined) states[state].total = 0;
 
       if(states[state].current[thisMonth] === undefined) states[state].current[thisMonth] = 0;
       if(states[state].cumulative[thisMonth] === undefined) states[state].cumulative[thisMonth] = 0;
@@ -152,15 +163,15 @@
         angular.forEach(stateData.types,function(typeData,typeKey){
 
           var potentialObj = HelperService.getRandomMinMaxValue(typeData.qtypermonth.values, typeData.qtypermonth.weights);
-        
+
           if(potentialObj)
           {
             /* with the probability setting we will rule out some potential leads to get our actual leads per month */
-            var probability = typeData.probability.value;
+            //var probability = typeData.probability.value;
 
             for(var i = 0; i<potentialObj; i++)
             {
-              service.runProbabilityFilter({"state":stateKey,"type":typeKey,"data":{}});
+              service.runProbabilityFilter({"state":stateKey,"type":typeKey,"data":{},"cycles":0});
             }
 
           }
@@ -190,6 +201,11 @@
     service.runProbabilityFilter = function(params)
     { 
 
+      if(params.state === undefined ) return;
+
+      //bump the cycle increment;
+      params.cycles += 1;
+
       var settings = defaults[params.state].types[params.type];
 
       if(service.probabiltyCheck(params))
@@ -205,9 +221,9 @@
         //moving on
         service.createSalesProcess(params);
 
+
       } else {
 
-        //console.log(settings.failurereasons.values);
         var failure =  HelperService.getRandomValue(settings.failurereasons.values, settings.failurereasons.weights);
 
         service.updateFailures({"state":params.state,"type":failure});
@@ -251,9 +267,7 @@
           if(service.delayProbabiltyCheck(params))
           {
               var thisDelay = HelperService.getRandomValue(settings.delayreasons.values, settings.delayreasons.weights);
-
-              delayTime = HelperService.getRandomMinMaxValue(thisDelay.cost.values, thisDelay.cost.weights);
-
+              delayTime += HelperService.getRandomMinMaxValue(thisDelay.cost.values, thisDelay.cost.weights);
           }
 
         }
@@ -266,6 +280,7 @@
 
     service.getCallbackParams = function(params)
     {
+
       var stateKeys = Object.keys(defaults);
       var returnObj;
       var curIndex = stateKeys.indexOf(params.state);
@@ -276,7 +291,8 @@
             "params":{
               "state":stateKeys[nextIndex],
               "type":params.type,
-              "data":params.data
+              "data":params.data,
+              "cycles":params.cycles
             }
           };
 
@@ -285,7 +301,7 @@
         returnObj = {
             "callback":service.createJob,
             "params": params.data
-          };
+        };
       }
 
       return returnObj;
@@ -307,12 +323,12 @@
       };
 
       ProcessService.addProcess(processObj);
-      
-      service.updateStateValue(params.state);
 
+      service.updateStateValue(params.state);
+     
     };
 
-    /* no need to check probability at this point its already been done */
+    
     service.createJob = function(params)
     {
         JobService.setJobState(params.jobID,'job');

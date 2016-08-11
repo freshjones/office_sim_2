@@ -1,0 +1,86 @@
+{
+	"description" : "A list of typical processes required by jobs",
+	"processes" : {
+
+		"Estimate" : {
+			"inputs" : {
+
+			},
+			"activities" : {
+
+			},
+			"outputs" : {
+				"cost" : {
+					"description" : "The estimated value of this job"
+				}
+			}
+		},
+
+		"Schedule" : {
+			"inputs" : {
+				"Due Date" : { "supplier" : "Process" }
+			},
+			"activities" : {
+
+			},
+			"outputs" : {
+				"cost" : {
+					"description" : "The estimated value of this job"
+				}
+			}
+		},
+
+		"Agreement" : {
+			"inputs" : {
+				"Estimate" : { "supplier" : "Process"},
+				"Payment Terms" : { "supplier" : "Default"},
+				"Schedule" : { "supplier" : "Process"}
+			},
+			"activities" : {
+
+			},
+			"outputs" : {
+				"agreement" : {
+					"description" : "The signed agreement to do the job"
+				}
+			}
+		},
+
+		"Create Job" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		},
+
+		"Creative Brief" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		},
+
+		"Materials Request" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		},
+
+		"Visual Design" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		},
+
+		"Copy Writing" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		},
+
+		"Mood Board" : {
+			"inputs" : {},
+			"activities" : {},
+			"outputs" : {}
+		}
+
+	}
+}

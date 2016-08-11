@@ -1,0 +1,100 @@
+{
+	"Configuration" : {
+		"id" : "DEV-001-000",
+		"description" : "",
+		"category" : "Development Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[],
+		"children":{
+			"Website Configuration" : {
+				"id" : "DEV-001-001",
+				"description" : "",
+				"category" : "Development Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}  
+				},
+				"requirements":[],
+				"children":{
+					"Drupal Site Configuration" : {
+						"id" : "DEV-001-001-000",
+						"description" : "",
+						"category" : "Development Services",
+						"process" : {
+							"understand" :{},
+							"perform" : {},
+							"validate" : {}
+						},
+						"requirements":[]
+					}
+				}
+			},
+			"Print Project Configuration" : {
+				"id" : "DEV-001-002",
+				"description" : "",
+				"category" : "Development Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			}
+			
+		}
+	},
+	"Art Production" : {
+		"id" : "DEV-002-000",
+		"description" : "",
+		"category" : "Development Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Visual Development" : {
+		"id" : "DEV-003-000",
+		"description" : "",
+		"category" : "Development Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Functional Development" : {
+		"id" : "DEV-004-000",
+		"description" : "",
+		"category" : "Development Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Site Building" : {
+		"id" : "DEV-005-000",
+		"description" : "",
+		"category" : "Development Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	}
+}

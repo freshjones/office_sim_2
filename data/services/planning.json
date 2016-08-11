@@ -1,0 +1,86 @@
+{
+	"Estimate" : {
+		"id" : "PLAN-001-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Contract/Agreement" : {
+		"id" : "PLAN-002-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Creative Brief" : {
+		"id" : "PLAN-003-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Statement of Work" : {
+		"id" : "PLAN-004-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Specifications Document" : {
+		"id" : "PLAN-005-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Proposal" : {
+		"id" : "PLAN-006-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Consultation" : {
+		"id" : "PLAN-007-000",
+		"description" : "",
+		"category" : "Planning Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	}
+}

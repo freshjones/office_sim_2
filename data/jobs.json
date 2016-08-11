@@ -1,97 +1,67 @@
 {
-	"Banner Ad - Resize" : {
-		"weight" : 25,
-		"duedate" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
-		"expedite" : {"value":90,"description":"Probability that this job will need to be expedited"},
-		"description" : "A Design Only Project (e.g. we do the design someone else does the development)",
-		"components" : {
-			"Strategy" : {
-				"rate" : 125,
-				"roles" : ["accountrep","designer"],
-				"experience" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
-				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
+	"description" : "A list of all the types of jobs we typically do - reminder when creating features, the job has been awarded and we are ready to begin working on the project, we do not want to include stuff like initial meeting time or estimating time or time to gather external resources, that time has been accounted for at this point.",
+	
+	"jobtypes" : {
+
+		"Banner Ad - Resize" : {
+
+			"description" : "A quick project where we must resize an existing ad to a different size",
+			"weight" : {
+				"description":"Percentage of total work this job type typically represents",
+				"value" : 25
 			},
-			"Production" : {
-				"rate" : 125,
-				"roles" : ["Production Artist"],
-				"experience" : {"level":{"values":[[0,5],[6,10]],"weights":[0.1,0.9]},"description":"probable experience level required - low experience effects delays"},
-				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-			}
-		},
-		"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-	},
-	"Website Redesign Only - Small" : {
-		"weight" : 70,
-		"expedite" : {"value":10,"description":"Probability that this job will need to be expedited"},
-		"experience" : {"values":[[0,5],[6,10]],"weights":[0.1,0.9]},
-		"description" : "A Design Only Project (e.g. we do the design someone else does the development)",
-		"components" : {
-			"Strategy" : {
-				"rate" : 125,
-				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-			},
-			"Creative" : {
-				"rate" : 125,
-				"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-				"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-				"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-			}
-		},
-		"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-	},
-	"Marketing Campaign 1" : {
-		"weight" : 5,
-		"expedite" : {"value":0,"description":"Probability that this job will need to be expedited"},
-		"description" : "",
-		"components" : {
-			"Print Ad" : {
-				"components" : {
-					"Strategy" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					},
-					"Creative" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					},
-					"Production" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					}
+			"duedate" : {
+				"description":"Typical number of days that we usually have to complete this job type",
+				"value" : {
+					"options":[[0,5],[6,10]],
+					"weights":[0.1,0.9]
 				}
 			},
-			"Tradeshow Booth" : {
-				"components" : {
-					"Strategy" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					},
-					"Creative" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					},
-					"Production" : {
-						"rate" : 125,
-						"hours" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]},
-						"iterations" : {"values":[[0,2],[3,4],[5,6],[7,10]],"weights":[0.6,0.3,0.08,0.02]},
-						"susceptibility" : {"values":[[8,16],[24,48]],"weights":[0.7,0.3]}
-					}
+			"expedite" : {
+				"description":"Probability that this job will need to be expedited",
+				"value":90
+			},
+			"components" : {
+				"Design":{},
+				"Development":{}
+			}
+		},
+		"Website Redesign Only - Small" : {
+
+			"description" : "A Design Only Project (e.g. we do the design someone else does the development",
+			"weight" : {
+				"description":"Percentage of total work this job type typically represents",
+				"value" : 75
+			},
+			"duedate" : {
+				"description":"Typical number of days that we usually have to complete this job type",
+				"value" : {
+					"options":[[0,0],[30,60],[60,120]],
+					"weights":[0.5,0.1,0.4]
+				}
+			},
+			"expedite" : {
+				"description":"Probability that this job will need to be expedited",
+				"value":10
+			},
+			"components" : ["Design","Development"]
+		},
+		"Marketing Campaign 1" : {
+			"description" : "",
+			"weight" : {
+				"description":"Percentage of total work this job type typically represents",
+				"value" : 5
+			},
+			"expedite" : {
+				"description":"Probability that this job will need to be expedited",
+				"value":0
+			},
+			"components" : {
+				"Print Ad" : {
+					"components" : ["Design","Development"]
+				},
+				"Tradeshow Booth" : {
+					"components" : ["Design","Development"]
 				}
 			}
 		}

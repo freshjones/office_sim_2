@@ -7,6 +7,113 @@
 	"net_terms" : [30,60,90],
 	"invoice_terms" : [0,30],
 	"starting_balance" : 0,
-	"rush_probabilty" : 25
+	"rush_probabilty" : 25,
+	"chargeby" : "Resource",
+	"services" : {
+
+		"Consultation" : {
+			"experience" : {
+				"description" : "The default experience required to fullfill the service",
+				"value" : 5
+			},
+			"rates" : {
+				"description" : "The amount per hour to charge for this service",
+				"value" : {
+					"options":[[0,5],[6,10]],
+					"values":[125,150]
+				}
+			}
+		},
+		"Design" : {
+
+			"experience" : {
+				"description" : "The default experience required to fullfill the service",
+				"value" : 5
+			},
+			"rates" : {
+				"description" : "The amount per hour to charge for this service",
+				"value" : {
+					"options":[[0,5],[6,10]],
+					"values":[125,150]
+				}
+			},
+			"process" : {
+				"Define" : {
+					"description" : "understand the problem"
+				},
+				"Create" : {
+					"description" : "explore options and create potential solutions"
+				},
+				"Validate" : {
+					"description" : "Learn what is working and what is not"
+				}
+			},
+			"hours" : {
+				"description" : "Likely amount of hours that will be required",
+				"value" : {
+					"options":[[8,16],[24,48]],
+					"weights":[0.7,0.3]
+				}
+			},
+			"iterations" : {
+				"description" : "Likely amount of process iterations that will be required",
+				"value" : {
+					"options":[[0,2],[3,4],[5,6],[7,10]],
+					"weights":[0.6,0.3,0.08,0.02]
+				}
+			}				
+
+		},
+		"Development" : {
+
+			"experience" : {
+				"description" : "The default experience required to fullfill the service",
+				"value" : 5
+			},
+			"rates" : {
+				"description" : "The amount per hour to charge for this service",
+				"value" : {
+					"options":[[0,5],[6,10]],
+					"values":[125,150]
+				}
+			},
+			"process" : {
+				"Define" : {
+					"description" : "understand the problem",
+					"activities" : {
+						"description" : "The activities necessary to define this domain"
+					}
+				},
+				"Create" : {
+					"description" : "explore options and create potential solutions",
+					"activities" : {
+						"description" : "The activities necessary to define this domain"
+					}
+				},
+				"Validate" : {
+					"description" : "Learn what is working and what is not",
+					"activities" : {
+						"description" : "The activities necessary to define this domain"
+					}
+				}
+			},
+			"hours" : {
+				"description" : "Likely amount of hours that will be required",
+				"value" : {
+					"options":[[8,16],[24,48]],
+					"weights":[0.7,0.3]
+				}
+			},
+			"iterations" : {
+				"description" : "Likely amount of process iterations that will be required",
+				"value" : {
+					"options":[[0,2],[3,4],[5,6],[7,10]],
+					"weights":[0.6,0.3,0.08,0.02]
+				}
+			}
+
+		}
+
+	}
 	
 }

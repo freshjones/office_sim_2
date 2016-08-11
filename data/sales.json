@@ -4,7 +4,7 @@
 		"types" : {
 			"active" :{
 				"qtypermonth" : {"values":[[0,3],[4,6],[7,10],[11,15]],"weights":[0.3,0.57,0.1,0.03]},
-				"probability" : {"value":75, "description":"probability of becoming an lead"},
+				"probability" : {"value":75, "description":"percent probability of becoming an lead"},
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
@@ -35,7 +35,7 @@
 			},
 			"passive" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":85, "description":"probability of becoming an lead"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an lead"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
@@ -71,7 +71,7 @@
 		"types" : {
 			"active" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":85, "description":"probability of becoming an opportunity"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an opportunity"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
@@ -108,10 +108,10 @@
 			},
 			"passive" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":85, "description":"probability of becoming an opportunity"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an opportunity"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
-				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
+				"delayprobability" : {"value":50,"description":"percent probability of a delay happening"},
 				"delayreasons" : {
 					"description" : "Reasons for a delay in becoming a job",
 					"values" : [
@@ -150,7 +150,7 @@
 		"types" : {
 			"active" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":85, "description":"probability of becoming an estimate"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an estimate"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : {"values":[[0,1],[2,4],[5,10]],"weights":[0.4,0.5,0.1]},
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
@@ -193,7 +193,7 @@
 			},
 			"passive" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":85, "description":"probability of becoming an estimate"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an estimate"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},
@@ -241,7 +241,7 @@
 		"types" : {
 			"active" :{
 				"qtypermonth" : 0,
-				"probability" : {"value":95, "description":"probability of becoming an job"}, 
+				"probability" : {"value":85, "description":"percent probability of becoming an job"}, 
 				"processtime" : {"values":[[24,48],[48,72],[72,168],[168,720]],"weights":[0.3,0.5,0.15,0.05]},
 				"delays" : 0,
 				"delayprobability" : {"value":50,"description":"probability of a delay happening"},

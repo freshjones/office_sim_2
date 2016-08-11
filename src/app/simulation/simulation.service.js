@@ -13,7 +13,9 @@
         TimerService,
         SalesService,
         JobService,
-        ProcessService
+        ProcessService,
+        ScheduleService,
+        ProductionService
     )
   {
 
@@ -55,11 +57,42 @@
         //reinitialize
         AccountsService.zeroAccountBalances();
 
+        //initialize processes
+        ProcessService.resetProcesses();
+
         //initialize leads
-        SalesService.resetStates();
+        SalesService.resetSales();
+
+        //initialize jobs
+        JobService.resetJobs();
 
 	};
 
+    service.runSimulation = function()
+    {   
+       
+
+        //increment the iteration
+        for(var i=0; i < iterations; i++)
+        { 
+
+            //reset the timer for each iteration
+            TimerService.resetIterationTimers();
+
+            //increment the iteration
+            TimerService.incrementByOne('iteration');
+
+            //run each iteration
+            service.runIteration();
+
+            //update the data chart
+            //service.updateProfitLossChart();
+
+        }
+
+        return service.getSimulationStatistics();
+ 
+    };
 
     service.runIteration = function()
     {
@@ -68,6 +101,14 @@
 
         SalesService.resetCurrentStates();
 
+        /* TESTING */
+
+        //create one single job
+        //JobService.createJob({"state":"job"});
+
+        //run it through the production cycle
+        //ScheduleService.scheduleJobs();
+
         for(var i=1; i <= 12; i++)
         {
             var month       = i;
@@ -75,7 +116,11 @@
 
             TimerService.incrementByMonth(hour);
             
+            //run the sales department cycle feeders
             SalesService.runSalesCycle();
+
+            //run the production department cycle feeders
+            ProductionService.runProductionCycle();
 
             //run the process cycle after all feeders
             ProcessService.runProcessorCycle();
@@ -105,12 +150,13 @@
             //SalesService.runSalesCycle();
 
             //ProcessService.runCycle();
-        
+
         }
-            
+      
         SalesService.updateSalesFailureStatistics(iteration);
 
     };
+
     /*
 	service.runIteration = function()
 	{
@@ -158,34 +204,7 @@
 
 	};
     */
-	service.runSimulation = function()
-	{	
-       
-
-        //increment the iteration
-        for(var i=0; i < iterations; i++)
-        { 
-
-        	//reset the timer for each iteration
-        	TimerService.resetIterationTimers();
-
-        	//increment the iteration
-        	TimerService.incrementByOne('iteration');
-
-        	//run each iteration
-        	service.runIteration();
-
-            //update the data chart
-            //service.updateProfitLossChart();
-
-        }
-
-        //console.log(SalesService.getStates());
-        //console.log(JobService.getJobsByParam({"param":"state","value":"estimate"}));
-   
-        return service.getSimulationStatistics();
- 
-	};
+	
 
     service.updateProfitLossChart = function()
     {

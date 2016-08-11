@@ -1,0 +1,88 @@
+{
+	"Release to Environment" : {
+		"id" : "REL-001-000",
+		"description" : "",
+		"category" : "Release Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[],
+		"children":{
+			"Release to Production" : {
+				"id" : "REL-001-001",
+				"description" : "",
+				"category" : "Release Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			},
+			"Release to Staging" : {
+				"id" : "REL-001-002",
+				"description" : "",
+				"category" : "Release Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			}
+		}
+	},
+	"Release to Third Party" : {
+		"id" : "REL-002-000",
+		"description" : "",
+		"category" : "Release Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{
+			"Release to Printer" : {
+				"id" : "REL-002-001",
+				"description" : "",
+				"category" : "Release Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}
+				},
+				"requirements":[],
+				"children":{}
+			},
+			"Release to Proofing Service" : {
+				"id" : "REL-002-002",
+				"description" : "",
+				"category" : "Release Services",
+				"process" : {
+					"understand" :{},
+					"perform" : {},
+					"validate" : {}  
+				},
+				"requirements":[],
+				"children":{}
+			}
+		}
+	},
+	"Release to Archive" : {
+		"id" : "REL-003-000",
+		"description" : "",
+		"category" : "Release Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	}
+}

@@ -13,7 +13,11 @@
       replace:true,
       link: function(scope, element, attrs, ctrl) 
       {
-       
+          
+          $timeout(function(){
+            ctrl.startSimulation();
+          });
+          
           scope.runSimulation = function()
           {
             ctrl.startSimulation();

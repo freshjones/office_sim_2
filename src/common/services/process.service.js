@@ -5,9 +5,14 @@
   function ProcessService($filter,TimerService)
   {
 
-    var processes = [];
+    var processes;
 
     var service = {};
+
+    service.resetProcesses = function()
+    {
+      processes = [];
+    };
 
     service.addProcess = function(obj)
     {
@@ -18,7 +23,7 @@
       var time = obj.time < 720 ? currentMonth : currentMonth + Math.floor(obj.time / 720);
 
       if(time > 12) time = 1;
-      
+
       obj.time = time;
 
       processes.push(obj);

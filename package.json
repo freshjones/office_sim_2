@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-chart.js": "^1.0.0",
+    "chart.js": "^2.2.1",
     "express": "^4.13.3"
   },
   "devDependencies": {

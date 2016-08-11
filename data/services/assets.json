@@ -1,0 +1,50 @@
+{
+	"Image Gathering" : {
+		"id" : "ASSET-001-000",
+		"description" : "",
+		"category" : "Asset Gathering Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements"  :[],
+		"children":{}
+	},
+	"Copy Gathering" : {
+		"id" : "ASSET-002-000",
+		"description" : "",
+		"category" : "Asset Gathering Services",
+		"process" : {
+			"understand" :{},    
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Data Gathering" : {
+		"id" : "ASSET-003-000",
+		"description" : "",
+		"category" : "Asset Gathering Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	},
+	"Brand Gathering" : {
+		"id" : "ASSET-004-000",
+		"description" : "",
+		"category" : "Asset Gathering Services",
+		"process" : {
+			"understand" :{},
+			"perform" : {},
+			"validate" : {}
+		},
+		"requirements":[],
+		"children":{}
+	}
+}
