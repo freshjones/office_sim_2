@@ -1,0 +1,173 @@
+{
+	
+	"O": {
+		"inputs": {},
+		"units": 1,
+		"processes": {
+			"A": {
+				"inputs": {},
+				"units": 1,
+				"processes": {
+							"R": {
+								"inputs": {},
+								"estimate": 1,
+								"units": 1,
+								"outputs": {}
+							},
+							"S": {
+								"inputs": {},
+								"estimate": 1,
+								"units": 1,
+								"outputs": {}
+							}
+						},
+				"outputs": {}
+			},
+			"U": {
+				"inputs": {
+					"processes": ["A"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"V": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			}
+		},
+		"outputs": {}
+	},
+	"P": {
+		"inputs": {
+			"processes": ["O"]
+		},
+		"units": 1,
+		"processes": {
+			"B": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"C": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"D": {
+				"inputs": {
+					"processes": ["M"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"E": {
+				"inputs": {
+					"processes": ["M"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"M": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			}
+		},
+		"outputs": {}
+	},
+	"Q": {
+		"inputs": {
+			"processes": ["P"]
+		},
+		"units": 1,
+		"processes": {
+			"F": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"G": {
+				"inputs": {},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"L": {
+				"inputs": {
+					"processes": ["N"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"N": {
+				"inputs": {
+					"processes": ["G"]
+				},
+				"units": 1,
+				"processes": {
+					"H": {
+						"inputs": {},
+						"units": 1,
+						"processes": {
+							"W": {
+								"inputs": {},
+								"estimate": 5,
+								"units": 1,
+								"outputs": {}
+							},
+							"X": {
+								"inputs": {},
+								"estimate": 1,
+								"units": 1,
+								"outputs": {}
+							}
+						},
+						"outputs": {}
+					},
+					"I": {
+						"inputs": {},
+						"estimate": 1,
+						"units": 1,
+						"outputs": {}
+					},
+					"J": {
+						"inputs": {
+							"processes": ["I"]
+						},
+						"estimate": 1,
+						"units": 1,
+						"outputs": {}
+					},
+					"K": {
+						"inputs": {
+							"processes": ["I"]
+						},
+						"estimate": 1,
+						"units": 1,
+						"outputs": {}
+					},
+					"T": {
+						"inputs": {
+							"processes": ["H"]
+						},
+						"estimate": 1,
+						"units": 1,
+						"outputs": {}
+					}
+				},
+				"outputs": {}
+			}
+		},
+		"outputs": {}
+	}
+}

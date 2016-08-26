@@ -8,7 +8,8 @@
   	'ui.router',
   	'templates',
   	'common.controllers.bootstrap',
-  	'app.directives.simulation'
+  	'app.directives.simulation',
+    'app.directives.processtest',
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -17,7 +18,7 @@
   	$stateProvider
     .state('root', {
       url: "/",
-      template: "<simulation></simulation>",
+      template: "<processtest></processtest>",
       controller: 'BootstrapCtrl',
       resolve: {
 
@@ -29,6 +30,8 @@
             promises.accounts = $http({method: 'GET', url: '/data/accounts.json'});
             promises.sales = $http({method: 'GET', url: '/data/sales.json'});
             promises.jobs = $http({method: 'GET', url: '/data/jobs.json'});
+
+            promises.processes = $http({method: 'GET', url: '/data/test_processes.json'});
 
             return $q.all(promises).then(function(response){
 

@@ -1,0 +1,33 @@
+<div>
+	<h1>{{processor.time}}</h1>
+	<ul>
+		<li ng-repeat="(key,count) in processor.counts">{{key}}:{{count}}</li> 
+	</ul>
+	<p><button ng-click="next(processor.time)" ng-disabled="!hasWork()">next</button><button ng-click="reset()">reset</button></p>
+	<table border="1" cellpadding="3" cellspacing="0" style="box-sizing: border-box;  border-collapse: collapse; ">
+	<thead>
+		<th>Depth</th>
+		<th>Process ID</th>
+		<th>Type</th>
+		<th>Requires</th>
+		<th>Estimated</th>
+		<th>Worked</th>
+		<th>Queued</th>
+		<th>In Progress</th>
+		<th>Completed</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(key,process) in processor.flatprocesses">
+			<td>{{process.depth}}</td>
+			<td>{{process.key}}</td>
+			<td>{{process.type}}</td>
+			<td>{{process.requirements.processes.join(', ')}}</td>
+			<td>{{process.units * process.estimate}}</td>
+			<td>{{process.worked}}</td>
+			<td><span ng-if="process.status === 'waiting'">*</span></td>
+			<td><span ng-if="process.status === 'inprogress'">*</span></td>
+			<td><span ng-if="process.status === 'complete'">*</span></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
