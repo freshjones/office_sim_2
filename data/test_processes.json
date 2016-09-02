@@ -1,7 +1,45 @@
 {
-	
-	"O": {
+	"SALES": {
 		"inputs": {},
+		"units": 1,
+		"processes": {
+			"LEAD": {
+				"inputs": {},
+				"units": 1,
+				"estimate": 1,
+				"outputs": {}
+			},
+			"OPPORTUNITY": {
+				"inputs": {
+					"processes": ["LEAD"]
+				},
+				"units": 1,
+				"estimate": 1,
+				"outputs": {}
+			},
+			"ESTIMATE": {
+				"inputs": {
+					"processes": ["OPPORTUNITY"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			},
+			"JOB": {
+				"inputs": {
+					"processes": ["ESTIMATE"]
+				},
+				"estimate": 1,
+				"units": 1,
+				"outputs": {}
+			}
+		},
+		"outputs": {}
+	},
+	"O": {
+		"inputs": {
+			"processes": ["SALES"]
+		},
 		"units": 1,
 		"processes": {
 			"A": {
